@@ -1,7 +1,15 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+import { ApolloWrapper } from "../lib/apollo-provider";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+
+  console.log(pageProps, 'pageProps');
+
+  return (
+    <ApolloWrapper>
+      <Component {...pageProps} />
+    </ApolloWrapper>
+  );
 }
 
-export default MyApp
+export default MyApp;
