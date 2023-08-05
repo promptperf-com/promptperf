@@ -10,7 +10,11 @@ import {
 
 function makeClient() {
   const httpLink = new HttpLink({
-      uri: "https://countries.trevorblades.com",
+      preserveHeaderCase: true,
+      uri: "http://localhost:8080/v1/graphql",
+      headers: {
+        'x-hasura-admin-secret': 'myadminsecretkey'
+      }
   });
 
   return new NextSSRApolloClient({

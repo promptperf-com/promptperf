@@ -3,21 +3,19 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
-
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 
 const query = gql`
-  query ExampleQuery {
-    countries {
-      code
-      name
-    }
+query q {
+  test {
+    id
+    name
   }
+}
 `;
 
 export default function Home() {
-  const { data } = useSuspenseQuery(query);
+  const { data, error } = useQuery(query);
 
   return (
     <div className={styles.container}>
@@ -32,6 +30,7 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
         <pre>{JSON.stringify(data)}</pre>
+        <pre>{JSON.stringify(error)}</pre>
 
         <p className={styles.description}>
           Get started by editing{" "}
